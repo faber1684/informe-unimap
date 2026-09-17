@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Situación de UNIMAP E.U. — Informe a los afiliados de ASEP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bitter:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F6F7;
+  --surface:#FFFFFF;
+  --ink:#132A33;
+  --muted:#4A5F68;
+  --line:#D3DDE1;
+  --brand:#0B5F66;
+  --brand-soft:#E0EEEF;
+  --band:#0B4A50;
+  --on-band:#F2FAFA;
+  --on-band-muted:#B9D7D9;
+  --alert:#A8231B;
+  --alert-soft:#F8E3E1;
+  --warn:#8A5300;
+  --warn-soft:#FAEED8;
+  --ok:#236341;
+  --ok-soft:#E0F0E6;
+  --track:#E4EAEC;
+  --body:"Atkinson Hyperlegible", "Segoe UI", Verdana, Arial, sans-serif;
+  --head:"Bitter", Georgia, "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D181C; --surface:#14242A; --ink:#E5EEF0; --muted:#A2B5BC; --line:#2A3F47;
+    --brand:#62C4CB; --brand-soft:#15353A; --band:#0A2F33; --on-band:#EAF6F7; --on-band-muted:#8FBFC3;
+    --alert:#FF8C82; --alert-soft:#3A1D1B; --warn:#F0B64C; --warn-soft:#382B15;
+    --ok:#7FD0A0; --ok-soft:#17301F; --track:#223840;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D181C; --surface:#14242A; --ink:#E5EEF0; --muted:#A2B5BC; --line:#2A3F47;
+  --brand:#62C4CB; --brand-soft:#15353A; --band:#0A2F33; --on-band:#EAF6F7; --on-band-muted:#8FBFC3;
+  --alert:#FF8C82; --alert-soft:#3A1D1B; --warn:#F0B64C; --warn-soft:#382B15;
+  --ok:#7FD0A0; --ok-soft:#17301F; --track:#223840;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:1.0625rem; line-height:1.6;
+}
+img{max-width:100%}
+a{color:var(--brand)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--brand);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:48rem;margin:0 auto;padding:0 1.25rem}
+
+/* Encabezado */
+.band{background:var(--band);color:var(--on-band);padding:2.25rem 0 2.75rem}
+.issuer{margin:0 0 1.75rem;font-size:.95rem;color:var(--on-band-muted);line-height:1.45}
+.issuer strong{color:var(--on-band);font-weight:700;display:block;font-size:1rem}
+h1{
+  font-family:var(--head);font-weight:800;
+  font-size:clamp(1.9rem,5.2vw,2.9rem);line-height:1.12;
+  margin:0 0 1rem;letter-spacing:-.01em;max-width:20ch;
+}
+.lede{font-size:1.15rem;margin:0;max-width:38rem;color:var(--on-band)}
+.meta{margin:1.5rem 0 0;font-size:.9rem;color:var(--on-band-muted)}
+
+/* Índice */
+.toc{background:var(--surface);border-bottom:1px solid var(--line)}
+.toc ul{list-style:none;margin:0;padding:.85rem 0;display:flex;flex-wrap:wrap;gap:.35rem 1.25rem;font-size:.95rem}
+.toc a{text-decoration:none;font-weight:700}
+.toc a:hover{text-decoration:underline}
+
+/* Secciones */
+main{padding:1rem 0 3rem}
+section{padding:2.25rem 0 .5rem}
+h2{font-family:var(--head);font-weight:700;font-size:clamp(1.4rem,3.6vw,1.85rem);line-height:1.2;margin:0 0 1rem}
+h3{font-family:var(--head);font-weight:700;font-size:1.15rem;line-height:1.3;margin:0 0 .5rem}
+p{margin:0 0 1rem}
+.muted{color:var(--muted)}
+
+/* La cifra central */
+.cash{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  padding:1.5rem 1.25rem 1.25rem;margin:0 0 1rem;
+}
+.cash-statement{font-family:var(--head);font-weight:800;font-size:clamp(1.35rem,4vw,1.8rem);line-height:1.25;margin:0 0 1.25rem}
+.bar-row{margin:0 0 1rem}
+.bar-label{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.95rem;margin-bottom:.35rem}
+.bar-label b{font-variant-numeric:tabular-nums}
+.track{height:2.1rem;background:var(--track);border-radius:4px;overflow:hidden}
+.fill{height:100%}
+.fill.need{width:100%;background:var(--muted);opacity:.55}
+.fill.have{width:.8%;min-width:5px;background:var(--alert)}
+.cash-foot{font-size:.95rem;color:var(--muted);margin:0}
+
+.risk{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.75rem;margin:1rem 0 0;padding:0;list-style:none}
+.risk li{background:var(--alert-soft);border-left:5px solid var(--alert);padding:.75rem .9rem;border-radius:0 6px 6px 0}
+.risk span{display:block;font-size:.9rem;color:var(--muted)}
+.risk strong{font-size:1.05rem}
+
+/* Cuadro de cifras */
+.figures{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;background:var(--surface)}
+.figures th,.figures td{padding:.65rem .8rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.figures td.num{text-align:right;white-space:nowrap;font-weight:700}
+.figures th{font-size:.9rem;color:var(--muted);font-weight:700}
+.figures caption{text-align:left;font-size:.9rem;color:var(--muted);padding:0 0 .5rem}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:0 0 1rem}
+
+/* Hallazgos */
+.finding{border-top:1px solid var(--line);padding:1.25rem 0 .25rem}
+.finding:first-of-type{border-top:0;padding-top:0}
+.finding p:last-child{margin-bottom:.75rem}
+.why{color:var(--muted)}
+.why b{color:var(--ink)}
+
+/* Debilidad y propuesta */
+.focus{
+  margin:1.5rem 0 .5rem;border:2px solid var(--brand);border-radius:12px;overflow:hidden;background:var(--surface);
+}
+.focus-head{background:var(--brand-soft);padding:1rem 1.25rem}
+.focus-head h3{font-size:1.3rem;margin:0}
+.focus-head p{margin:.25rem 0 0;color:var(--muted);font-size:.95rem}
+.focus-body{display:grid;grid-template-columns:1fr;gap:0}
+.focus-col{padding:1.1rem 1.25rem}
+.focus-col + .focus-col{border-top:1px solid var(--line)}
+.tag{display:inline-block;font-size:.85rem;font-weight:700;padding:.15rem .6rem;border-radius:999px;margin-bottom:.6rem}
+.tag.weak{background:var(--warn-soft);color:var(--warn)}
+.tag.fix{background:var(--ok-soft);color:var(--ok)}
+.focus ul{margin:.25rem 0 1rem;padding-left:1.2rem}
+.focus li{margin-bottom:.35rem}
+@media (min-width:44rem){
+  .focus-body{grid-template-columns:1fr 1fr}
+  .focus-col + .focus-col{border-top:0;border-left:1px solid var(--line)}
+}
+
+/* Propuestas */
+.asks{display:grid;grid-template-columns:1fr;gap:1rem}
+@media (min-width:40rem){.asks{grid-template-columns:1fr 1fr}}
+.ask{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1rem 1.1rem}
+.ask p{margin:0;font-size:1rem}
+
+/* Alternativas */
+.alts{display:grid;gap:1rem}
+.alt{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.25rem .4rem}
+.alt h3{font-size:1.25rem}
+.alt .kind{display:block;font-size:.9rem;color:var(--muted);margin-bottom:.2rem}
+.alt .sub{margin:1rem 0 .4rem;padding-top:.9rem;border-top:1px dashed var(--line)}
+.alt .sub:first-of-type{border-top:0;padding-top:0}
+.check{background:var(--warn-soft);border-left:4px solid var(--warn);padding:.7rem .9rem;border-radius:0 6px 6px 0;margin:0 0 1rem;font-size:.98rem}
+.check b{color:var(--warn)}
+
+/* Plan de 16 semanas */
+.weeks{display:grid;grid-template-columns:repeat(16,1fr);gap:3px;margin:.5rem 0 .4rem}
+.weeks span{height:2.1rem;background:var(--brand-soft);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:var(--brand);font-variant-numeric:tabular-nums}
+.weeks span.eval{background:var(--warn);color:var(--surface)}
+.weeks span.end{background:var(--brand);color:var(--surface)}
+.weeks-key{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.9rem;color:var(--muted);margin:0 0 1.5rem}
+@media (max-width:30rem){.weeks span{font-size:.62rem;height:1.8rem}}
+.plans{display:grid;grid-template-columns:1fr;gap:1rem}
+@media (min-width:40rem){.plans{grid-template-columns:1fr 1fr}}
+.plan{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:8px;padding:1rem 1.1rem}
+.plan p{margin:0;font-size:1rem}
+
+/* Plazos */
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:.55rem;top:.4rem;bottom:.4rem;width:2px;background:var(--line)}
+.timeline li{position:relative;padding:0 0 1.15rem 2.1rem}
+.timeline li::before{content:"";position:absolute;left:.15rem;top:.35rem;width:.85rem;height:.85rem;border-radius:50%;background:var(--surface);border:3px solid var(--brand)}
+.timeline li.stop::before{border-color:var(--alert);background:var(--alert)}
+.when{display:block;font-family:var(--head);font-weight:700;font-size:1.05rem}
+.timeline p{margin:.15rem 0 0}
+
+/* Escenarios */
+.paths{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:.75rem}
+.paths li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem .9rem 3rem;position:relative}
+.paths li::before{counter-increment:p;content:counter(p, lower-alpha);position:absolute;left:1rem;top:.85rem;font-family:var(--head);font-weight:800;font-size:1.2rem;color:var(--brand)}
+
+/* Para el afiliado */
+.you{background:var(--brand-soft);border-radius:12px;padding:1.4rem 1.25rem .5rem}
+
+/* Glosario */
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:0 0 .5rem}
+summary{cursor:pointer;padding:.8rem 1rem;font-weight:700}
+details[open] summary{border-bottom:1px solid var(--line)}
+dl{margin:0;padding:.5rem 1rem 1rem}
+dt{font-weight:700;margin-top:.8rem}
+dd{margin:.15rem 0 0}
+
+/* Nota y firma */
+.note{border-left:4px solid var(--warn);background:var(--warn-soft);padding:1rem 1.1rem;border-radius:0 8px 8px 0;font-size:.97rem}
+.note p:last-child{margin:0}
+.sign{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.sign p{margin:0}
+.sign .line{margin-top:2.5rem}
+footer{border-top:1px solid var(--line);padding:1.25rem 0 2rem;font-size:.88rem;color:var(--muted)}
+
+@media (prefers-reduced-motion:no-preference){
+  .fill.have{animation:grow 1.2s ease-out .3s both}
+  @keyframes grow{from{width:0;min-width:0}to{width:.8%;min-width:5px}}
+}
+@media print{
+  body{background:#fff;color:#000;font-size:11pt}
+  .band{background:#fff;color:#000;border-bottom:2px solid #000;padding:0 0 1rem}
+  .issuer,.issuer strong,.lede,.meta{color:#000}
+  .toc{display:none}
+  details{border:0}
+  details:not([open]) > *:not(summary){display:block}
+  section,.finding,.focus,.ask{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap">
+    <p class="issuer"><strong>Asociación de Educadores del Putumayo — ASEP</strong>Informe a todos los afiliados sobre el análisis de la Junta Seccional Ampliada</p>
+    <h1>UNIMAP tiene bienes, pero no tiene con qué pagar</h1>
+    <p class="lede">La Junta Seccional Ampliada revisó la situación de UNIMAP E.U., la clínica de propiedad de ASEP. Este informe explica, sin términos técnicos, qué se encontró, por qué nos afecta y qué se propone hacer.</p>
+    <p class="meta">Sesión del 11 de septiembre de 2026. Cifras con corte al 31 de julio de 2026, tomadas del informe financiero DAF-0020-2026 presentado por la clínica.</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Contenido del informe">
+  <div class="wrap">
+    <ul>
+      <li><a href="#resumen">Resumen</a></li>
+      <li><a href="#cifras">Las cifras</a></li>
+      <li><a href="#hallazgos">Hallazgos</a></li>
+      <li><a href="#cartera">Cobro a FIDUPREVISORA</a></li>
+      <li><a href="#propuestas">Propuestas</a></li>
+      <li><a href="#alternativas">Alternativas</a></li>
+      <li><a href="#plan16">Plan de 16 semanas</a></li>
+      <li><a href="#plazos">Plazos</a></li>
+      <li><a href="#caminos">Caminos posibles</a></li>
+      <li><a href="#afiliados">Qué significa para usted</a></li>
+      <li><a href="#glosario">Glosario</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="resumen" aria-labelledby="t-resumen">
+    <h2 id="t-resumen">En pocas palabras</h2>
+    <p>En los libros de contabilidad, UNIMAP aparece con más bienes que deudas e incluso reporta ganancias. Pero en la práctica no tiene dinero disponible para pagar a tiempo la nómina, los medicamentos ni las cuotas que debe a hospitales. La razón principal es que a la clínica le deben mucho dinero que no logra cobrar, y parte de lo que sí tiene está retenido por un embargo judicial.</p>
+    <p>La junta concluyó que el problema no es solo de cuentas: también es de manejo y control. Hay decisiones importantes que se tomaron de manera individual, información que no se ha entregado completa y un hecho grave, de más de cuatro mil millones de pesos, que todavía no se ha investigado a fondo.</p>
+    <p>Por eso la junta propone una auditoría externa, un plan de acción de 16 semanas con evaluación en la semana 6, una persona dedicada en Bogotá a recuperar el dinero que adeuda el sistema de salud del magisterio, cambios en la forma de elegir la junta directiva de la clínica y plazos precisos para tomar decisiones. También se plantearon alternativas para conseguir recursos: cambiar la clínica a una S.A.S. ZOMAC, buscar financiación con base en su cartera o vender una parte de sus acciones sin que ASEP pierda el control.</p>
+  </section>
+
+  <section id="cifras" aria-labelledby="t-cifras">
+    <h2 id="t-cifras">La cifra que lo explica todo</h2>
+    <div class="cash">
+      <p class="cash-statement">Por cada 100 pesos que la clínica debe pagar pronto, tiene menos de 1 peso en caja.</p>
+      <div class="bar-row">
+        <div class="bar-label"><span>Lo que debe pagar a corto plazo</span><b>$3.247 millones</b></div>
+        <div class="track" role="img" aria-label="Barra completa: 3.247 millones de pesos en pagos urgentes"><div class="fill need"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span>El dinero que tenía disponible el 31 de julio</span><b>$26,1 millones</b></div>
+        <div class="track" role="img" aria-label="Barra casi vacía: 26,1 millones de pesos disponibles, menos del 1 por ciento de lo que debe pagar"><div class="fill have"></div></div>
+      </div>
+      <p class="cash-foot">El propio informe de la clínica dice que es «contablemente solvente pero operativamente insolvente»: en el papel tiene con qué responder, pero en el día a día no tiene efectivo para cumplir.</p>
+      <ul class="risk" aria-label="Riesgos según el informe de la clínica">
+        <li><span>Riesgo de quedarse sin dinero</span><strong>Crítico</strong></li>
+        <li><span>Riesgo legal</span><strong>Extremo</strong></li>
+        <li><span>Riesgo de no poder operar</span><strong>Inminente</strong></li>
+      </ul>
+    </div>
+
+    <h3>Lo que la clínica tiene, lo que debe y lo que le deben</h3>
+    <div class="scroll">
+      <table class="figures">
+        <caption>Cifras redondeadas a millones de pesos</caption>
+        <thead><tr><th scope="col">Concepto</th><th scope="col">Qué quiere decir</th><th scope="col" style="text-align:right">Valor</th></tr></thead>
+        <tbody>
+          <tr><td>Activos</td><td>Todo lo que la clínica tiene o le deben, según sus libros</td><td class="num">$23.295 millones</td></tr>
+          <tr><td>Pasivos</td><td>Todo lo que la clínica debe</td><td class="num">$11.835 millones</td></tr>
+          <tr><td>Patrimonio</td><td>Lo que en teoría quedaría para el dueño, que es ASEP</td><td class="num">$10.304 millones</td></tr>
+          <tr><td>Ganancia reportada</td><td>Resultado que informa la clínica para el periodo</td><td class="num">$1.156 millones</td></tr>
+          <tr><td>Cartera</td><td>Dinero que le deben a la clínica por servicios prestados</td><td class="num">$14.633 millones</td></tr>
+          <tr><td>Cartera que se espera recibir</td><td>Lo que quedaría después de descuentos, embargo, honorarios y retenciones</td><td class="num">$10.338 millones</td></tr>
+          <tr><td>Facturado</td><td>Ingresos por servicios que reporta el informe</td><td class="num">$9.472 millones</td></tr>
+          <tr><td>Recibido en bancos</td><td>Dinero que realmente entró entre enero y julio de 2026</td><td class="num">$6.526 millones</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">Entre lo facturado y lo que realmente llegó a los bancos hay una diferencia cercana a $2.946 millones. Esa brecha es, precisamente, el tamaño del problema de caja.</p>
+  </section>
+
+  <section id="hallazgos" aria-labelledby="t-hallazgos">
+    <h2 id="t-hallazgos">Lo que encontró la junta</h2>
+
+    <div class="finding">
+      <h3>A la clínica le deben mucho y no logra cobrarlo a tiempo</h3>
+      <p>La mayor parte del dinero de UNIMAP está en cuentas por cobrar, no en el banco. El informe atribuye la falta de efectivo a los retrasos en los pagos relacionados con la atención en salud del magisterio (UT Magisalud 2 y UT Salud Sur 2), cuyos recursos administra FIDUPREVISORA. Además, esa cartera no está clasificada por quién debe, desde cuándo ni en qué estado está el cobro, así que hoy no se sabe con certeza cuánto se puede recuperar de verdad.</p>
+      <p class="why"><b>Por qué importa:</b> sin ese dinero no hay cómo pagar salarios, medicamentos ni deudas. Este punto se desarrolla más abajo, junto con la propuesta de solución.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Un embargo retiene cerca de $1.963 millones, y nadie lo ha explicado</h3>
+      <p>Un juzgado de Neiva (Juzgado Quinto del Circuito) ordenó un embargo por ese valor, que equivale a casi una quinta parte del dinero que la clínica espera cobrar. El informe no dice quién demandó, por qué deuda, desde cuándo, qué defensa se hizo ni por qué el proceso está en Neiva.</p>
+      <p class="why"><b>Por qué importa:</b> un embargo no aparece solo; es la consecuencia de una deuda que no se pagó y de una defensa judicial que no funcionó. Mientras siga, ese dinero no se puede usar.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Hay deudas urgentes con trabajadores, proveedores y hospitales</h3>
+      <p>La clínica debe cerca de $1.436 millones a su personal (la mitad del salario de julio, la nómina de agosto, la seguridad social de julio y agosto y contratos de prestación de servicios); unos $1.885 millones a proveedores de medicamentos, concentrados en su mayoría en un solo proveedor; y cerca de $1.293 millones en cuotas incumplidas con hospitales, entre ellos el Hospital Cardiovascular de Cundinamarca, con 34 cuotas pendientes.</p>
+      <p class="why"><b>Por qué importa:</b> la ley obliga a pagar primero a los trabajadores y la seguridad social. No hacerlo genera multas, intereses y responsabilidad personal de quienes administran. Y si los proveedores suspenden el suministro, los afiliados se quedan sin medicamentos.</p>
+    </div>
+
+    <div class="finding">
+      <h3>La clínica depende casi por completo de un solo pagador</h3>
+      <p>El propio informe lo reconoce, pero no dice qué porcentaje de los ingresos representa, hasta cuándo va el contrato ni qué pasaría si no se renueva.</p>
+      <p class="why"><b>Por qué importa:</b> si ese contrato termina o se retrasa más, la clínica no tiene otra fuente con qué sostenerse.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Una presunta irregularidad de más de $4.000 millones sigue sin investigarse</h3>
+      <p>En la sesión, la gerencia informó que en el pasado se habría reconocido una deuda con la Clínica Putumayo por más de cuatro mil millones de pesos sin la revisión técnica de las cuentas médicas, y que el documento habría sido firmado por quien entonces presidía la junta directiva de UNIMAP, presuntamente sin autorización de los demás integrantes. A la fecha no se conoce denuncia, proceso ni plan de acción sobre este hecho.</p>
+      <p class="why"><b>Por qué importa:</b> por su tamaño, podría explicar buena parte de la crisis. Si nadie actúa, pueden vencerse los plazos legales para reclamar. La junta registra estos hechos como presuntos y no prejuzga a ninguna persona: su verificación le corresponde a la auditoría.</p>
+    </div>
+
+    <div class="finding">
+      <h3>El informe financiero presentado está incompleto y tiene errores</h3>
+      <p>No trae los estados financieros completos, no está firmado por el contador ni revisado por un revisor fiscal, y varias sumas no cuadran: aparecen tres valores distintos para la misma cartera, $900 millones de «medicamentos pendientes» sin proveedor ni factura, y cifras mal escritas que las multiplican por un millón. Además, si los descuentos esperados por glosas (unos $1.656 millones) y la provisión por el contrato de cápita ($1.404 millones) no se restaron del resultado, la ganancia reportada desaparecería y la clínica estaría operando a pérdida.</p>
+      <p class="why"><b>Por qué importa:</b> con cifras que no cuadran no se pueden tomar decisiones seguras. La junta recibió el informe como una alerta, no como la rendición de cuentas que solicitó.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Hay fallas de manejo y control</h3>
+      <p>Decisiones que comprometen el patrimonio se han tomado de forma individual. La junta directiva de la clínica no se elige con base en conocimientos de administración, finanzas o salud. En la sesión se mencionaron posibles influencias indebidas en la contratación de personal, empleados a quienes no se les puede exigir por ser presuntamente recomendados, y errores de la gerencia y su equipo sin que haya responsables identificados ni correctivos.</p>
+      <p class="why"><b>Por qué importa:</b> sin buen manejo, cualquier dinero que entre se vuelve a perder. Las ganancias en el papel terminarían pagando multas, embargos y abogados.</p>
+    </div>
+
+    <div class="finding">
+      <h3>Preocupa la entrega de medicamentos a los docentes</h3>
+      <p>La gerencia pidió a los presidentes zonales que orienten a los docentes para que compren medicamentos con su propio dinero, con la promesa de reintegrarlo después, y que esos medicamentos no entregados no se cuenten como deuda.</p>
+      <p class="why"><b>Por qué importa:</b> traslada al afiliado una carga que le corresponde a la clínica y oculta el tamaño real de lo que se debe.</p>
+    </div>
+
+    <div class="finding">
+      <h3>La ley no le da a la clínica una salida de rescate ordinaria</h3>
+      <p>Las clínicas (IPS) no pueden acogerse al proceso de reorganización de empresas en crisis (Ley 1116 de 2006). Si la situación sigue empeorando, lo que procede son las medidas de la Superintendencia Nacional de Salud, que pueden llegar a la toma de posesión. En la sesión se advirtió de manera reiterada que nuevas demandas de otras entidades llevarían muy probablemente a la quiebra.</p>
+      <p class="why"><b>Por qué importa:</b> el plan de recuperación tiene que hacerse ahora y con resultados que se puedan verificar, no cuando ya sea tarde.</p>
+    </div>
+  </section>
+
+  <section id="cartera" aria-labelledby="t-cartera">
+    <h2 id="t-cartera">Cobrar lo que le deben: debilidad y propuesta</h2>
+    <p>De todos los hallazgos, este es el que más directamente puede aliviar la crisis, porque el dinero ya existe: son servicios que la clínica prestó y que aún no le han pagado.</p>
+
+    <article class="focus" aria-labelledby="t-focus">
+      <div class="focus-head">
+        <h3 id="t-focus">Recuperación de cartera ante FIDUPREVISORA</h3>
+        <p>FIDUPREVISORA es la entidad que administra los recursos con los que se paga la atención en salud del magisterio.</p>
+      </div>
+      <div class="focus-body">
+        <div class="focus-col">
+          <span class="tag weak">Debilidad detectada</span>
+          <p>La clínica tiene dificultad para recuperar la cartera ante FIDUPREVISORA. Cuando no hay un seguimiento permanente y presencial a cada trámite, las facturas se quedan esperando revisión, las objeciones (glosas) no se resuelven a tiempo y no se consiguen fechas ciertas de pago.</p>
+          <p>El resultado es que la clínica presta el servicio, gasta en personal y medicamentos, pero el dinero no llega cuando se necesita.</p>
+        </div>
+        <div class="focus-col">
+          <span class="tag fix">Propuesta de solución</span>
+          <p>Contratar una persona con capacidad para gestionar la cartera ante FIDUPREVISORA, que permanezca en Bogotá, donde tiene su sede esa entidad, pendiente de todos los trámites necesarios para llevar a buen término la recuperación del dinero. Su labor sería:</p>
+          <ul>
+            <li>Radicar y hacer seguimiento a cada factura hasta su pago.</li>
+            <li>Atender y resolver las glosas, y asistir a las mesas de conciliación con las uniones temporales y FIDUPREVISORA.</li>
+            <li>Obtener fechas ciertas de pago y dejar constancia escrita de cada requerimiento.</li>
+            <li>Informar con regularidad los avances a la comisión de seguimiento, con metas de recaudo medibles.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="propuestas" aria-labelledby="t-propuestas">
+    <h2 id="t-propuestas">Lo que la junta ampliada propone y exige</h2>
+    <div class="asks">
+      <div class="ask">
+        <h3>Cuentas claras y completas</h3>
+        <p>Estados financieros completos, firmados y certificados, con la explicación escrita de cada error encontrado; documentos legales de la clínica y su habilitación vigente ante las autoridades de salud; y el detalle de la cartera por quién debe, desde cuándo y en qué estado.</p>
+      </div>
+      <div class="ask">
+        <h3>Auditoría externa independiente</h3>
+        <p>Realizada por una firma sin vínculos con los directivos de UNIMAP ni de ASEP, con acceso directo a libros, extractos bancarios, facturación, nómina y contratos originales, e informe entregado directamente a la junta ampliada. Debe incluir, como prioridad, una revisión a fondo del caso de la Clínica Putumayo.</p>
+      </div>
+      <div class="ask">
+        <h3>Proteger el dinero y la evidencia</h3>
+        <p>Suspender cualquier pago derivado del caso de la Clínica Putumayo hasta verificarlo, pedir concepto jurídico sobre las acciones legales y sus plazos, y prohibir el retiro o la alteración de documentos mientras dura la auditoría.</p>
+      </div>
+      <div class="ask">
+        <h3>Ordenar pagos y cobros</h3>
+        <p>Un seguimiento semanal de caja, pagar primero a los trabajadores y la seguridad social, gestionar el levantamiento o la reducción del embargo y renegociar en conjunto con hospitales y proveedores, con cuotas atadas a lo que realmente se recauda. Todo esto se organiza en el plan de acción de 16 semanas.</p>
+      </div>
+      <div class="ask">
+        <h3>Mejor manejo y reglas claras</h3>
+        <p>Metas medibles para la gerencia y cada área, planes de mejoramiento, y una reforma para que la junta directiva de UNIMAP se elija por mérito entre los afiliados de ASEP, con la obligación de contar con siete integrantes directos de la junta directiva de ASEP, reglas sobre conflictos de interés y límites para que nadie pueda comprometer a la clínica por su cuenta.</p>
+      </div>
+      <div class="ask">
+        <h3>Seguimiento permanente</h3>
+        <p>Una comisión de seguimiento de cinco miembros de la Junta Seccional Ampliada, con funciones, responsabilidades y financiación definidas, que reciba y verifique la información y acompañe las decisiones que vengan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="alternativas" aria-labelledby="t-alternativas">
+    <h2 id="t-alternativas">Alternativas planteadas para salir de la crisis</h2>
+    <p>En la sesión se propusieron dos caminos para conseguir recursos y ordenar la clínica. Ninguno resuelve la crisis por sí solo, y todos deben evaluarse con concepto jurídico, contable y tributario antes de decidir.</p>
+
+    <div class="alts">
+      <article class="alt">
+        <span class="kind">Cambio de forma legal</span>
+        <h3>Convertir a UNIMAP en una S.A.S. ZOMAC</h3>
+        <p>Hoy UNIMAP es una empresa unipersonal (E.U.), es decir, una empresa con un solo dueño. Una S.A.S. (sociedad por acciones simplificada) es una forma de empresa más flexible, cuyo capital se divide en acciones que pueden tener varios dueños. ZOMAC es el nombre de los municipios más afectados por el conflicto armado, donde la ley dio a las sociedades nuevas un descuento en el impuesto de renta.</p>
+        <p>El cambio abriría la puerta a vender una parte de la clínica a otros inversionistas y, si se cumplen los requisitos, a pagar menos impuesto.</p>
+        <p class="check"><b>Qué hay que verificar:</b> el beneficio ZOMAC está previsto para sociedades nuevas que tengan su domicilio y desarrollen toda su actividad en esos municipios; una empresa que ya existe y solo cambia de forma no se vuelve nueva por eso, y el descuento es temporal. Además, cambiar de forma no borra las deudas, no levanta el embargo ni permite a la clínica acogerse a la ley de insolvencia de empresas.</p>
+      </article>
+
+      <article class="alt">
+        <span class="kind">Apalancamiento financiero</span>
+        <h3>Conseguir recursos para cumplir los acuerdos de pago</h3>
+
+        <p class="sub"><b>Factoring o compra de cartera.</b> Es el nombre técnico de la operación en la que un banco o una empresa especializada compra las facturas que le deben a la clínica y le paga hoy una parte de su valor, a cambio de un descuento. Es decir, la clínica recibe dinero ya, sin esperar a que FIDUPREVISORA pague.</p>
+        <p class="check"><b>Qué hay que verificar:</b> solo se pueden vender facturas electrónicas que tengan valor de título (aceptadas por quien debe pagarlas) e inscritas en RADIAN, la plataforma de la DIAN para ese fin. Las facturas con glosas, en disputa o afectadas por el embargo difícilmente sirven, y el descuento que cobra el comprador es un costo que hay que calcular.</p>
+
+        <p class="sub"><b>Crédito con tasa compensada de Findeter.</b> La línea «Compromiso Salud Liquidez» ofrece, a través de los bancos, créditos para capital de trabajo y para cambiar deudas caras por otras más favorables, y pueden solicitarla las clínicas privadas con servicios habilitados.</p>
+        <p class="check"><b>Qué hay que verificar:</b> exige un certificado de potencial beneficiario expedido por el Ministerio de Salud, no aplica a entidades en liquidación o con medida especial de la Superintendencia, y está disponible hasta el 31 de diciembre de 2026 o hasta que se agoten los recursos. Si se decide usarla, hay que actuar pronto.</p>
+
+        <p class="sub"><b>Venta de acciones sin perder el control.</b> Consiste en vender a inversionistas una parte minoritaria de la clínica, de modo que ASEP conserve siempre más de la mitad y siga tomando las decisiones.</p>
+        <p class="check"><b>Qué hay que verificar:</b> primero debe hacerse el cambio a S.A.S., porque una empresa unipersonal no tiene acciones para vender. Se necesita un avalúo de la clínica, estatutos que aseguren que las decisiones importantes sigan en manos de ASEP y, antes de negociar, los resultados de la auditoría, porque ningún inversionista pagará un buen precio sin conocer las deudas reales.</p>
+
+        <p class="muted">Cualquier crédito es una deuda nueva: debe estar respaldado en el programa mensual de caja y no puede comprometer los bienes que la clínica necesita para funcionar.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="plan16" aria-labelledby="t-plan16">
+    <h2 id="t-plan16">Plan de acción de 16 semanas</h2>
+    <p>Se sugirió un plan de acción con plazo fijo de 16 semanas, cerca de cuatro meses, que se evaluará en la semana 6 para medir el avance de su ejecución.</p>
+    <div class="weeks" role="img" aria-label="Línea de 16 semanas con evaluación de avance en la semana 6 y cierre en la semana 16">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span class="eval">6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span class="end">16</span>
+    </div>
+    <p class="weeks-key"><span>Semana 6: evaluación de avance</span><span>Semana 16: cierre del plan</span></p>
+    <p>El plan debe contener cuatro componentes que se ejecutan al mismo tiempo:</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Plan de pagos por prelación legal</h3>
+        <p>Organiza las cuentas por pagar en el orden que fija la ley: primero los trabajadores y la seguridad social, después los impuestos, luego las deudas respaldadas con garantías y, por último, proveedores y demás acreedores. Así se evita pagarle a uno mientras se generan multas e intereses con otro.</p>
+      </div>
+      <div class="plan">
+        <h3>Plan jurídico</h3>
+        <p>Atiende el embargo, los procesos judiciales en curso y las posibles nuevas demandas, y define las acciones frente al caso de la Clínica Putumayo antes de que se venzan los plazos legales para actuar.</p>
+      </div>
+      <div class="plan">
+        <h3>Plan de recuperación de cuentas por cobrar</h3>
+        <p>Define cómo, cuándo y por medio de quién se cobrará cada deuda a favor de la clínica, incluida la gestión permanente ante FIDUPREVISORA en Bogotá, la solución de glosas y las conciliaciones con cada pagador.</p>
+      </div>
+      <div class="plan">
+        <h3>Plan financiero con su PAC</h3>
+        <p>Proyecta los ingresos y los gastos, define cómo se usarían las alternativas de financiación y se acompaña del Programa Anual Mensualizado de Caja, que muestra mes a mes cuánto dinero entra y cuánto se paga, para no asumir compromisos sin respaldo.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="plazos" aria-labelledby="t-plazos">
+    <h2 id="t-plazos">Plazos propuestos</h2>
+    <ol class="timeline">
+      <li><span class="when">Cada viernes</span><p>La clínica presenta a la comisión de seguimiento su plan de caja a trece semanas: cuánto entra, cuánto sale y qué se decide pagar.</p></li>
+      <li><span class="when">10 días hábiles</span><p>Entrega del informe financiero completo y certificado, con la explicación de cada inconsistencia.</p></li>
+      <li><span class="when">15 días hábiles</span><p>Entrega de los documentos de legalidad, manejo y finanzas solicitados por oficio.</p></li>
+      <li><span class="when">30 días</span><p>Contratación de la auditoría externa.</p></li>
+      <li><span class="when">Semana 6 del plan</span><p>Evaluación del avance del plan de acción de 16 semanas.</p></li>
+      <li class="stop"><span class="when">60 días: punto de no retorno</span><p>Si para entonces no se ha levantado o reducido el embargo, ni hay acuerdo de pago con el pagador principal, la junta se reunirá de forma extraordinaria para decidir el futuro de la clínica.</p></li>
+      <li><span class="when">90 días</span><p>Entrega del informe final de la auditoría y junta extraordinaria para escoger el camino a seguir.</p></li>
+      <li><span class="when">Semana 16 del plan</span><p>Cierre del plan de acción y balance de sus resultados en pagos, procesos judiciales, cobros y caja.</p></li>
+    </ol>
+    <p class="muted">Cada plazo se cuenta desde la solicitud o la aprobación que le corresponde. Si la información no se entrega a tiempo, se dejará constancia de incumplimiento del deber de rendir cuentas, con las consecuencias que prevén los estatutos y la ley.</p>
+  </section>
+
+  <section id="caminos" aria-labelledby="t-caminos">
+    <h2 id="t-caminos">Los caminos que se podrán evaluar</h2>
+    <p>Con los resultados de la auditoría, la junta deberá escoger, con información cierta, entre cuatro opciones. Cada una se presentará con su costo, su efecto sobre los trabajadores y su impacto sobre el patrimonio de ASEP.</p>
+    <ol class="paths">
+      <li>Seguir operando, con una reestructuración a fondo de la administración y las finanzas.</li>
+      <li>Buscar un aliado: operar en conjunto o arrendar la infraestructura a otra entidad habilitada.</li>
+      <li>Reducir los servicios a los que dejan ganancia y tienen mayor demanda.</li>
+      <li>Cerrar o vender de manera ordenada, protegiendo a los trabajadores y a los usuarios.</li>
+    </ol>
+    <p>La junta dejó claro que la decisión no puede aplazarse: o se corrige de raíz un problema que viene de muchos años, o se corre el riesgo de que la clínica llegue a una liquidación sin control.</p>
+  </section>
+
+  <section id="afiliados" aria-labelledby="t-afiliados">
+    <div class="you">
+      <h2 id="t-afiliados">Qué significa esto para usted</h2>
+      <p><b>UNIMAP es de todos los afiliados.</b> Su patrimonio es parte del patrimonio de ASEP, y la junta pidió precisar cuánto está expuesta la asociación por aportes, préstamos o garantías que haya dado a la clínica.</p>
+      <p><b>El servicio que usted recibe depende de que esto se resuelva.</b> La junta también solicitó información sobre tiempos de espera, citas canceladas, quejas y reclamos de los afiliados y sus familias.</p>
+      <p><b>Si le han pedido comprar medicamentos con su dinero</b>, conserve la fórmula médica y la factura de compra, e informe el caso a su subdirectiva.</p>
+      <p><b>Manténgase informado por los canales oficiales de ASEP</b> y participe en las asambleas donde se tomarán las decisiones sobre el futuro de la clínica.</p>
+    </div>
+  </section>
+
+  <section id="glosario" aria-labelledby="t-glosario">
+    <h2 id="t-glosario">Palabras que aparecen en este informe</h2>
+    <details>
+      <summary>Ver el glosario</summary>
+      <dl>
+        <dt>Cartera</dt><dd>Dinero que otras entidades le deben a la clínica por servicios que ya prestó.</dd>
+        <dt>Recuperar cartera</dt><dd>Hacer todas las gestiones para que ese dinero efectivamente se pague.</dd>
+        <dt>Glosa</dt><dd>Objeción que hace quien paga sobre una factura, por ejemplo por falta de soportes. Mientras no se resuelva, esa parte no se paga.</dd>
+        <dt>Conciliación de cartera</dt><dd>Reunión en la que la clínica y quien paga revisan juntos las facturas y acuerdan cuánto se debe.</dd>
+        <dt>Embargo</dt><dd>Orden de un juez que congela dinero o bienes para asegurar el pago de una deuda.</dd>
+        <dt>Liquidez o caja</dt><dd>Dinero disponible para pagar de inmediato.</dd>
+        <dt>Activos, pasivos y patrimonio</dt><dd>Lo que se tiene, lo que se debe y la diferencia entre ambos.</dd>
+        <dt>Provisión</dt><dd>Reserva que se registra para una pérdida o un pago que probablemente habrá que asumir.</dd>
+        <dt>Cápita</dt><dd>Forma de contrato en la que se paga a la clínica un valor fijo por cada persona que atiende, use o no los servicios.</dd>
+        <dt>Prelación legal</dt><dd>Orden en que la ley manda pagar las deudas cuando no alcanza para todas.</dd>
+        <dt>Apalancamiento financiero</dt><dd>Conseguir recursos de terceros, por ejemplo un crédito, para atender obligaciones o sostener la operación.</dd>
+        <dt>Factoring o compra de cartera</dt><dd>Venta de facturas por cobrar a un banco o empresa especializada, que paga por adelantado una parte de su valor a cambio de un descuento.</dd>
+        <dt>Título valor</dt><dd>Documento que da derecho a cobrar una suma y que puede negociarse. Una factura electrónica aceptada puede serlo.</dd>
+        <dt>RADIAN</dt><dd>Plataforma de la DIAN donde se registran las facturas electrónicas que son título valor, para poder venderlas o endosarlas.</dd>
+        <dt>Tasa compensada</dt><dd>Crédito con intereses más bajos porque el Estado asume una parte del costo.</dd>
+        <dt>Empresa unipersonal (E.U.)</dt><dd>Empresa que tiene un solo dueño.</dd>
+        <dt>S.A.S.</dt><dd>Sociedad por acciones simplificada: forma de empresa flexible cuyo capital se divide en acciones.</dd>
+        <dt>ZOMAC</dt><dd>Zonas más afectadas por el conflicto armado: municipios donde la ley dio beneficios tributarios temporales a sociedades nuevas.</dd>
+        <dt>Auditoría externa</dt><dd>Revisión hecha por expertos independientes para verificar si las cuentas y las decisiones están en orden.</dd>
+        <dt>PAC</dt><dd>Programa Anual Mensualizado de Caja: plan que muestra, mes a mes, cuánto dinero se espera recibir y cuánto se va a pagar.</dd>
+        <dt>FIDUPREVISORA</dt><dd>Entidad que administra los recursos con los que se paga la atención en salud del magisterio.</dd>
+        <dt>Habilitación</dt><dd>Permiso de las autoridades de salud para que una clínica preste cada uno de sus servicios.</dd>
+        <dt>Toma de posesión</dt><dd>Medida por la cual la Superintendencia Nacional de Salud asume el control de una entidad en crisis.</dd>
+      </dl>
+    </details>
+  </section>
+
+  <section aria-label="Nota aclaratoria">
+    <div class="note">
+      <p>Los hechos que se describen como presuntos están sujetos a verificación por la auditoría externa y las autoridades competentes; este informe no atribuye responsabilidad a ninguna persona. Las cifras provienen del informe DAF-0020-2026 de UNIMAP E.U., no están certificadas por contador ni revisor fiscal y se presentan redondeadas a millones de pesos.</p>
+    </div>
+
+    <div class="sign">
+      <p>Fraternalmente,</p>
+      <p class="line"><b>[Nombre de quien firma]</b></p>
+      <p>[Cargo y órgano de ASEP que emite el informe]</p>
+      <p class="muted">Septiembre de 2026</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Asociación de Educadores del Putumayo — ASEP. Informe dirigido a los afiliados sobre la situación de UNIMAP E.U.</div>
+</footer>
+
+</body>
+</html>
