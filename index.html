@@ -67,6 +67,26 @@ h1{
 }
 .lede{font-size:1.15rem;margin:0;max-width:38rem;color:var(--on-band)}
 .meta{margin:1.5rem 0 0;font-size:.9rem;color:var(--on-band-muted)}
+.credit{margin:1.25rem 0 0;font-size:.95rem;color:var(--on-band-muted);line-height:1.5}
+.credit b{display:block;color:var(--on-band);font-size:1.05rem}
+.band-note{
+  margin:1.25rem 0 0;padding:.9rem 1rem;font-size:.88rem;line-height:1.5;
+  background:#FBE3E1;color:#9E1D16;border:1px solid #E9B4AF;border-radius:8px;max-width:42rem;
+}
+
+/* Botón para volver al inicio */
+.totop{
+  position:fixed;right:1rem;bottom:1rem;z-index:20;
+  width:3rem;height:3rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--brand);color:var(--surface);text-decoration:none;
+  box-shadow:0 3px 12px rgba(0,0,0,.28);
+}
+.totop svg{width:1.4rem;height:1.4rem;display:block}
+.totop:hover{filter:brightness(1.1)}
+@supports (padding:env(safe-area-inset-bottom)){
+  .totop{bottom:calc(1rem + env(safe-area-inset-bottom))}
+}
 
 /* Índice */
 .toc{background:var(--surface);border-bottom:1px solid var(--line)}
@@ -205,15 +225,16 @@ footer{border-top:1px solid var(--line);padding:1.25rem 0 2rem;font-size:.88rem;
 @media print{
   body{background:#fff;color:#000;font-size:11pt}
   .band{background:#fff;color:#000;border-bottom:2px solid #000;padding:0 0 1rem}
-  .issuer,.issuer strong,.lede,.meta{color:#000}
-  .toc{display:none}
+  .issuer,.issuer strong,.lede,.meta,.credit,.credit b{color:#000}
+  .band-note{color:#9E1D16;background:#FBE3E1;border-color:#E9B4AF;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .toc,.totop{display:none}
   details{border:0}
   details:not([open]) > *:not(summary){display:block}
   section,.finding,.focus,.ask{break-inside:avoid}
 }
 </style>
 </head>
-<body>
+<body id="inicio">
 
 <header class="band">
   <div class="wrap">
@@ -221,6 +242,8 @@ footer{border-top:1px solid var(--line);padding:1.25rem 0 2rem;font-size:.88rem;
     <h1>UNIMAP tiene bienes, pero no tiene con qué pagar</h1>
     <p class="lede">La Junta Seccional Ampliada revisó la situación de UNIMAP E.U., la clínica de propiedad de ASEP. Este informe explica, sin términos técnicos, qué se encontró, por qué nos afecta y qué se propone hacer.</p>
     <p class="meta">Sesión del 11 de septiembre de 2026. Cifras con corte al 31 de julio de 2026, tomadas del informe financiero DAF-0020-2026 presentado por la clínica.</p>
+    <p class="credit">Creado por:<b>Esp. Faber Huaca Díaz</b>Presidente, Subdirectiva Puerto Guzmán</p>
+    <p class="band-note">Los hechos que se describen como presuntos están sujetos a verificación por la auditoría externa y las autoridades competentes; este informe no atribuye responsabilidad a ninguna persona. Las cifras provienen del informe DAF-0020-2026 de UNIMAP E.U., no están certificadas por contador ni revisor fiscal y se presentan redondeadas a millones de pesos.</p>
   </div>
 </header>
 
@@ -536,15 +559,11 @@ footer{border-top:1px solid var(--line);padding:1.25rem 0 2rem;font-size:.88rem;
     </details>
   </section>
 
-  <section aria-label="Nota aclaratoria">
-    <div class="note">
-      <p>Los hechos que se describen como presuntos están sujetos a verificación por la auditoría externa y las autoridades competentes; este informe no atribuye responsabilidad a ninguna persona. Las cifras provienen del informe DAF-0020-2026 de UNIMAP E.U., no están certificadas por contador ni revisor fiscal y se presentan redondeadas a millones de pesos.</p>
-    </div>
-
+  <section aria-label="Créditos">
     <div class="sign">
-      <p class="muted">Elaborado por:</p>
-      <p><b>Faber Huaca Díaz</b></p>
-      <p>Presidente, Subdirectiva Sindical ASEP Puerto Guzmán</p>
+      <p class="muted">Creado por:</p>
+      <p><b>Esp. Faber Huaca Díaz</b></p>
+      <p>Presidente, Subdirectiva Puerto Guzmán</p>
       <p class="muted">Septiembre de 2026</p>
     </div>
   </section>
@@ -554,6 +573,10 @@ footer{border-top:1px solid var(--line);padding:1.25rem 0 2rem;font-size:.88rem;
 <footer>
   <div class="wrap">Asociación de Educadores del Putumayo — ASEP. Informe dirigido a los afiliados sobre la situación de UNIMAP E.U.</div>
 </footer>
+
+<a class="totop" href="#inicio" aria-label="Volver al inicio de la página" title="Volver al inicio">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</a>
 
 </body>
 </html>
